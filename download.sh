@@ -8,10 +8,13 @@ gzip -d JMdict.xml.gz
 gzip -d JMnedict.xml.gz
 
 
+echo Backup:
+[[ -f jmdict.json ]] && cp jmdict.json jmdict.json.bk
+[[ -f jmnedict.json ]] && cp jmnedict.json jmnedict.json.bk
 
 echo Converting to JSON:
-cp jmdict.json jmdict.json.bk
-cp jmnedict.json jmnedict.json.bk
 python3 convert-jmdict.py
 python3 convert-jmnedict.py
+
+echo Clean Backup:
 rm jmdict.json.bk jmnedict.json.bk
